@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/start_background">
+
+    <TextView
+        android:id="@+id/entry_point_text_view"
+        android:text="Edit Entry Point"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/entry_point_edit_view"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="43dp"/>
+
+
+    <EditText
+        android:id="@+id/entry_point_edit_view"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="@string/entry_point_hint"
+        android:textColorHint="@color/entry_hint_color"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_marginLeft="120dp"
+        android:background="@drawable/edit_text_shape"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/entry_point_text_view"/>
+
+    <TextView
+        android:id="@+id/app_key_entry_point"
+        android:text="Edit App Key"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/entry_point_edit_view"
+        android:layout_alignStart="@+id/entry_point_text_view" />
+
+    <EditText
+        android:id="@+id/app_key_edit_view"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:hint="@string/app_key_hint"
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_marginLeft="120dp"
+        android:background="@drawable/edit_text_shape"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/app_key_entry_point"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:onClick="onSaveSettingsButtonClicked"
+        android:background="@drawable/login_button_shape"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp" />
+
+
+</RelativeLayout>

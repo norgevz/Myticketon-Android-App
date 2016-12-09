@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">MyTicketOn</string>
     <string name="main_screen_slogan">Tu camino hacia \n el mejor arte</string>
+    <string name="entry_point_hint">http://entry_point_address</string>
+    <string name="app_key_hint">App key</string>
 </resources>

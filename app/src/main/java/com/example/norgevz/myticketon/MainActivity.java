@@ -1,5 +1,6 @@
 package com.example.norgevz.myticketon;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -76,5 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onRegisterButtonClicked(View view) {
 
+    }
+
+    public void onSettingsButtonClicked(View view) {
+        Intent getSettingsScreenIntent = new Intent(this , SettingsScreen_.class);
+        startActivity(getSettingsScreenIntent);
     }
 }
