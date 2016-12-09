@@ -1,10 +1,12 @@
-package com.example.norgevz.myticketon;
+package com.application.norgevz.myticketon;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+
+import com.application.norgevz.myticketon.settings.Settings;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -24,15 +26,16 @@ public class SettingsScreen extends AppCompatActivity {
     @ViewById(R.id.app_key_edit_view)
     EditText appKeyEditText;
 
+    @AfterViews
     public void init(){
 
+        String entryPoint = Settings.getEndpoint();
+
+        if(entryPoint.length() > 0){
+            entryPointTextView.setText(entryPoint);
+        }
+
     }
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.settings_layout);
-//    }
 
     public void onSaveSettingsButtonClicked(View view) {
         saveSettings();
@@ -40,7 +43,18 @@ public class SettingsScreen extends AppCompatActivity {
     }
 
     private void saveSettings() {
+
+        String entryPoint = entryPointTextView.getText().toString();
+        String appKey = appKeyEditText.getText().toString();
+
+        Settings.setEndpoint(entryPoint);
+
+        if(appKey.length() > 0)
+            Settings.setKey(appKey);
+
         System.out.println(String.valueOf(entryPointTextView.getText()));
+        System.out.println(String.valueOf(appKeyEditText.getText()));
+
     }
 
 }

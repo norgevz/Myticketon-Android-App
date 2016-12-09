@@ -1,4 +1,4 @@
-package com.example.norgevz.myticketon.rest;
+package com.application.norgevz.myticketon.rest;
 
 /**
  * Created by norgevz on 12/8/2016.

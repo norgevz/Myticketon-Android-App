@@ -1,11 +1,9 @@
-
-
-package com.example.norgevz.myticketon;
+package com.application.norgevz.myticketon;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.example.norgevz.myticketon.rest.BaseClient;
+import com.application.norgevz.myticketon.rest.BaseClient;
 
 import com.google.gson.Gson;
 import com.loopj.android.http.*;
@@ -19,7 +17,7 @@ import cz.msebera.android.httpclient.protocol.HTTP;
 /**
  * Created by norgevz on 12/8/2016.
  */
-import com.example.norgevz.myticketon.rest.*;
+import com.application.norgevz.myticketon.rest.*;
 
 public class Authenticator extends BaseClient{
 
@@ -36,13 +34,26 @@ public class Authenticator extends BaseClient{
         super(authEnpoint , key);
     }
 
-    public boolean Validate(Credentials credentials, Context context){
+    public void Validate(Credentials credentials, Context context){
 
         AuthenticateParams[] params = new AuthenticateParams[1];
         params[0] = new AuthenticateParams(context, credentials);
 
         new Authenticate().execute(params);
-        return false;
+    }
+
+    OnLogin listener;
+
+    public void setListener(OnLogin listener){
+        this.listener = listener;
+    }
+
+    public interface OnLogin{
+
+        void OnResult(boolean value);
+
+        void failLogin(String text);
+
     }
 
 
@@ -72,17 +83,30 @@ public class Authenticator extends BaseClient{
 
                             @Override
                             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                                if(listener != null) {
+                                    listener.failLogin("Error loading data.Please check connectivity and try again");
+                                }
                                 System.out.println("KERNEL PANIC");
                             }
 
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                                result = Boolean.parseBoolean(responseString);
+                                //result = Boolean.parseBoolean(responseString);
+
+                                if(listener != null){
+                                    listener.OnResult(Boolean.parseBoolean(responseString));
+                                }
                             }
                         });
 
             } catch (UnsupportedEncodingException e) {
+
                 e.printStackTrace();
+
+                if(listener != null) {
+                    listener.failLogin("Error loading data.Please check connectivity and try again");
+                }
+
             }
             return null;
         }
@@ -91,7 +115,5 @@ public class Authenticator extends BaseClient{
         protected void onPostExecute(Void aVoid) {
 
         }
-
     }
-
 }

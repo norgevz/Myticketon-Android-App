@@ -1,4 +1,4 @@
-package com.example.norgevz.myticketon;
+package com.application.norgevz.myticketon;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.norgevz.myticketon", appContext.getPackageName());
+        assertEquals("com.application.norgevz.myticketon", appContext.getPackageName());
     }
 }

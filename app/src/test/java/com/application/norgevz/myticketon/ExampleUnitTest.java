@@ -1,4 +1,4 @@
-package com.example.norgevz.myticketon;
+package com.application.norgevz.myticketon;
 
 import org.junit.Test;
 

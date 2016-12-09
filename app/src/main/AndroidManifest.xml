@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.norgevz.myticketon">
+    package="com.application.norgevz.myticketon">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity_"
+        android:theme="@style/AppTheme"
+        android:name=".global.GlobalState">
+
+        <activity android:name="com.application.norgevz.myticketon.MainActivity_"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +20,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SettingsScreen_"
+        <activity android:name="com.application.norgevz.myticketon.SettingsScreen_"
             android:label="Settings"
+            android:theme="@style/AppTheme" />
+
+        <activity android:name="com.application.norgevz.myticketon.RegisterScreen_"
+            android:label="Register"
             android:theme="@style/AppTheme" />
 
     </application>
