@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/lib/com.example.norgevz.myticketon"
+
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/start_background">
+
+    <ImageView
+        android:src="@drawable/logo"
+        android:id="@+id/imageView3"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:layout_marginTop="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:text="@string/main_screen_slogan"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textColor="@color/white"/>
+
+
+    <EditText
+        android:id="@+id/email_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:inputType="textPersonName"
+        android:layout_marginTop="47dp"
+        android:hint="ProviderId\\name@email.com"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/text_view"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="120dp"
+        android:textColorHint="@color/entry_hint_color"
+        android:background="@drawable/edit_text_shape"/>
+
+
+    <EditText
+        android:id="@+id/password_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:inputType="textPassword"
+        android:layout_below="@+id/email_edit_text"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:hint="password"
+        android:textColor="@color/white"
+        android:layout_marginLeft="120dp"
+        android:textColorHint="@color/entry_hint_color"
+        android:background="@drawable/edit_text_shape"/>
+
+    <Button
+        android:id="@+id/log_in_button"
+        android:text="Log in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/password_text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="120dp"
+        android:onClick="onLogInButtonClicked"
+        android:background="@drawable/login_button_shape"/>
+
+    <Button
+        android:id="@+id/register_button"
+        android:text="Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/log_in_button"
+        android:layout_centerHorizontal="true"
+        android:onClick="onRegisterButtonClicked"
+        android:background="@color/transparent"
+        android:textColor="@color/white"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/invalid_credentials_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Invalid Credentials"
+        android:textColor="@color/red"
+        android:layout_below="@+id/register_button"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible"/>
+
+
+</RelativeLayout>
