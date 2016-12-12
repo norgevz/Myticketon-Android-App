@@ -5,18 +5,28 @@
     android:background="@drawable/dashboard_background"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/tickets_lists"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar">
+        android:orientation="vertical">
 
-    </android.support.v7.widget.RecyclerView>
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
+
+        <com.application.norgevz.myticketon.tabs.SlidingTabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tabs"
+            android:layout_below="@id/app_bar"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/scan_button"
@@ -24,11 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="12dp"
         android:layout_marginBottom="16dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
-        android:src="@drawable/technology"
-        android:onClick="OnScanButtonClicked"/>
+        android:onClick="OnScanButtonClicked"
+        android:src="@drawable/technology" />
 
 </RelativeLayout>
