@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F7931E</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#192500</color>
+    <color name="colorPrimaryDark">#192500</color>
+    <color name="colorAccent">#FF9800</color>
+    <!--<color name="colorAccent">#50514F</color>-->
     <color name="white">#FFF</color>
     <color name="entry_hint_color">#CCC</color>
     <color name="red">#FF0000</color>
     <color name="transparent">#00000000</color>
-    <color name="app_orange">#F7931E</color>
+    <!--<color name="app_orange">#F7931E</color>-->
+    <color name="app_orange">#FF9800</color>
+    <color name="app_toolbar">#D6192500</color>
 </resources>

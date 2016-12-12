@@ -5,4 +5,5 @@
     <string name="app_key_hint">App key</string>
     <string name="preference_file_key">com.application.norgevz.myticketon.APP_SETTINGS</string>
     <string name="privacy_policy_text_view">By pressing Sing Up you agree with the Terms of Services and Privacy Policy</string>
+    <string name="log_out_string">Log Out</string>
 </resources>

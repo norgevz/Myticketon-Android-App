@@ -8,6 +8,7 @@ import com.application.norgevz.myticketon.rest.BaseClient;
 import com.google.gson.Gson;
 import com.loopj.android.http.*;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
@@ -54,6 +55,7 @@ public class Authenticator extends BaseClient{
 
         void failLogin(String text);
 
+        void registerCredentials( Credentials credentials );
     }
 
 
@@ -65,7 +67,7 @@ public class Authenticator extends BaseClient{
         protected Void doInBackground(AuthenticateParams... params)
         {
 
-            Credentials credentials = params[0].credentials;
+            final Credentials credentials = params[0].credentials;
             Context context = params[0].context;
 
             Gson gson = new Gson();
@@ -75,12 +77,12 @@ public class Authenticator extends BaseClient{
 
                 String json = gson.toJson(credentials, Credentials.class);
                 client.addHeader("Authorization", "amx" + " " + myKey);
-                StringEntity requestData= new StringEntity(json);
+                StringEntity requestData = new StringEntity(json);
                 requestData.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 
                 client.post(context,
                         getEndpoint(), requestData, "application/json", new TextHttpResponseHandler(){
-
+                            //TODO Check for other onFailures and why is taking so long
                             @Override
                             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                                 if(listener != null) {
@@ -91,9 +93,9 @@ public class Authenticator extends BaseClient{
 
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                                //result = Boolean.parseBoolean(responseString);
 
                                 if(listener != null){
+                                    listener.registerCredentials( credentials );
                                     listener.OnResult(Boolean.parseBoolean(responseString));
                                 }
                             }

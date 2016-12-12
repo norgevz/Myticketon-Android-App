@@ -6,107 +6,110 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="Create An Account"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="20sp"
-        android:layout_marginTop="43dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="First Name"
-        android:textColorHint="@color/entry_hint_color"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="16sp"
-        android:textAlignment="center"
+        android:layout_marginTop="43dp"
+        android:text="Create An Account"
         android:textColor="@color/white"
-        android:background="@drawable/edit_text_shape"/>
+        android:textSize="20sp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="First Name"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="16sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_shape"
         android:hint="Last Name"
-        android:textColorHint="@color/entry_hint_color"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="16sp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:background="@drawable/edit_text_shape"/>
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="16sp" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_shape"
         android:hint="Company Name"
-        android:textColorHint="@color/entry_hint_color"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="16sp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:background="@drawable/edit_text_shape"/>
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="16sp" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_shape"
         android:hint="Email"
-        android:textColorHint="@color/entry_hint_color"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="16sp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:background="@drawable/edit_text_shape"/>
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="16sp" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:hint="Password"
-        android:textColorHint="@color/entry_hint_color"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="Password"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:background="@drawable/edit_text_shape"/>
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/sign_up_button"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="Sign Up"
-        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="16sp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/login_button_shape"
+        android:text="Sign Up"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:background="@drawable/login_button_shape"/>
+        android:textSize="16sp" />
 
 
     <TextView
-        android:text="@string/privacy_policy_text_view"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:layout_marginTop="43dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"/>
-
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="43dp"
+        android:text="@string/privacy_policy_text_view"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
 
 </LinearLayout>

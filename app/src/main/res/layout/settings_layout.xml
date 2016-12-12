@@ -6,70 +6,70 @@
 
     <TextView
         android:id="@+id/entry_point_text_view"
-        android:text="Edit Entry Point"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/entry_point_edit_view"
         android:layout_marginStart="11dp"
-        android:layout_marginTop="43dp"/>
+        android:layout_marginTop="43dp"
+        android:text="Edit Entry Point"
+        android:textColor="@color/white" />
 
 
     <EditText
         android:id="@+id/entry_point_edit_view"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:hint="@string/entry_point_hint"
-        android:textColorHint="@color/entry_hint_color"
+        android:layout_below="@+id/entry_point_text_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="10dp"
-        android:textSize="16sp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="@string/entry_point_hint"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:layout_marginLeft="120dp"
-        android:background="@drawable/edit_text_shape"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/entry_point_text_view"/>
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/app_key_entry_point"
-        android:text="Edit App Key"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
+        android:layout_alignStart="@+id/entry_point_text_view"
         android:layout_below="@+id/entry_point_edit_view"
-        android:layout_alignStart="@+id/entry_point_text_view" />
+        android:layout_marginTop="43dp"
+        android:text="Edit App Key"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/app_key_edit_view"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:hint="@string/app_key_hint"
-        android:textColorHint="@color/entry_hint_color"
-        android:textSize="12sp"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:layout_marginLeft="120dp"
-        android:background="@drawable/edit_text_shape"
-        android:layout_marginTop="10dp"
-        android:inputType="textPassword"
         android:layout_below="@+id/app_key_entry_point"
         android:layout_centerHorizontal="true"
-        android:text="MTO_eRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc="/>
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="@string/app_key_hint"
+        android:inputType="textPassword"
+        android:text="MTO_eRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc="
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/save_button"
-        android:text="Save"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"
-        android:onClick="onSaveSettingsButtonClicked"
-        android:background="@drawable/login_button_shape"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp" />
+        android:layout_marginBottom="66dp"
+        android:layout_marginLeft="120dp"
+        android:background="@drawable/login_button_shape"
+        android:onClick="onSaveSettingsButtonClicked"
+        android:text="Save"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

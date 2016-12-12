@@ -1,119 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/start_background">
+    android:background="@drawable/start_background"
+    android:orientation="vertical">
 
     <ImageView
-        android:src="@drawable/logo"
         android:id="@+id/imageView3"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:layout_marginTop="90dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_below="@+id/imageView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
+        android:ems="10"
         android:text="@string/main_screen_slogan"
         android:textAlignment="center"
-        android:textSize="22sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="22sp" />
 
 
     <EditText
         android:id="@+id/email_edit_text"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:inputType="textPersonName"
-        android:layout_marginTop="47dp"
-        android:hint="ProviderId\\name@email.com"
-        android:textColorHint="@color/entry_hint_color"
-        android:textSize="16sp"
-        android:textColor="@color/white"
         android:layout_below="@+id/text_view"
-        android:textAlignment="center"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="120dp"
-        android:background="@drawable/edit_text_shape"/>
+        android:layout_marginTop="47dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="ProviderId\\name@email.com"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/entry_hint_color"
+        android:textSize="16sp" />
 
 
     <EditText
         android:id="@+id/password_text_view"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:inputType="textPassword"
         android:layout_below="@+id/email_edit_text"
-        android:layout_marginTop="15dp"
-        android:textSize="16sp"
-        android:textAlignment="center"
         android:layout_centerHorizontal="true"
-        android:hint="password"
-        android:textColor="@color/white"
         android:layout_marginLeft="120dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edit_text_shape"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:textColorHint="@color/entry_hint_color"
-        android:background="@drawable/edit_text_shape"/>
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/log_in_button"
-        android:text="Log in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
         android:layout_below="@+id/password_text_view"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="120dp"
-        android:textColor="@color/white"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/login_button_shape"
         android:onClick="onLogInButtonClicked"
-        android:background="@drawable/login_button_shape"/>
+        android:text="Log in"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/register_button"
-        android:text="Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
         android:layout_below="@+id/log_in_button"
         android:layout_centerHorizontal="true"
-        android:onClick="onRegisterButtonClicked"
+        android:layout_marginTop="14dp"
         android:background="@color/transparent"
+        android:onClick="onRegisterButtonClicked"
+        android:text="Register"
         android:textColor="@color/white"
-        android:textSize="10sp"/>
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/invalid_credentials_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Invalid Credentials"
-        android:textColor="@color/red"
         android:layout_below="@+id/register_button"
-        android:textAlignment="center"
         android:layout_marginTop="10dp"
-        android:visibility="invisible"/>
+        android:text="Invalid Credentials"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:visibility="invisible" />
 
     <ImageButton
         android:id="@+id/settings_button"
-        android:src="@drawable/settings"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imageView3"
-        android:layout_marginTop="11dp"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="11dp"
+        android:layout_toEndOf="@+id/imageView3"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
         android:background="@color/transparent"
-        android:onClick="onSettingsButtonClicked"/>
-
-
+        android:onClick="onSettingsButtonClicked"
+        android:scaleType="fitXY"
+        android:src="@drawable/settings" />
 
 
 </RelativeLayout>
