@@ -37,14 +37,15 @@
         android:layout_below="@+id/text_view"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="57dp"
         android:background="@drawable/edit_text_shape"
         android:hint="ProviderId\\name@email.com"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/entry_hint_color"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:text="pdla\\a@a.com"/>
 
 
     <EditText
@@ -61,7 +62,8 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/entry_hint_color"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:text="a"/>
 
     <Button
         android:id="@+id/log_in_button"
@@ -112,6 +114,15 @@
         android:onClick="onSettingsButtonClicked"
         android:scaleType="fitXY"
         android:src="@drawable/settings" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_below="@+id/text_view"
+        android:layout_centerHorizontal="true"
+        />
 
 
 </RelativeLayout>

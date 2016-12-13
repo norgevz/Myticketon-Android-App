@@ -10,17 +10,14 @@ import com.application.norgevz.myticketon.R;
  * Created by norgevz on 12/9/2016.
  */
 
-public class GlobalState extends Application {
+public class MyApplication extends Application {
 
     SharedPreferences sharedPref;
 
     SharedPreferences.Editor editor;
 
-    public static Application CurrentApplication;
+    private static MyApplication CurrentApplication;
 
-    public static Application getCurrentApplication() {
-        return CurrentApplication;
-    }
 
     public SharedPreferences.Editor getEditor() {
         return editor;
@@ -41,6 +38,17 @@ public class GlobalState extends Application {
 
         CurrentApplication = this;
     }
+
+    public static MyApplication getInstance(){
+        return CurrentApplication;
+    }
+
+    public static Context getAppContext(){
+        return CurrentApplication.getApplicationContext();
+    }
+
+
+
 
 
 }

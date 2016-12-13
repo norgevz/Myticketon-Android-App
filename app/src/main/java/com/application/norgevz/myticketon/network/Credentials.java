@@ -1,4 +1,4 @@
-package com.application.norgevz.myticketon.rest;
+package com.application.norgevz.myticketon.network;
 
 /**
  * Created by norgevz on 12/8/2016.

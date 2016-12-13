@@ -1,6 +1,6 @@
 package com.application.norgevz.myticketon.settings;
 
-import com.application.norgevz.myticketon.global.GlobalState;
+import com.application.norgevz.myticketon.global.MyApplication;
 
 /**
  * Created by norgevz on 12/8/2016.
@@ -8,7 +8,7 @@ import com.application.norgevz.myticketon.global.GlobalState;
 
 public final class Settings {
 
-    private static GlobalState state = ((GlobalState) GlobalState.getCurrentApplication());
+    private static MyApplication state = MyApplication.getInstance();
 
     public static String getEndpoint() {
         return state.getSharedPref().getString("entry_point", "");

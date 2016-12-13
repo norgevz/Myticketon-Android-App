@@ -5,11 +5,11 @@ import android.graphics.Typeface;
 import android.support.annotation.UiThread;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.application.norgevz.myticketon.rest.Credentials;
+import com.application.norgevz.myticketon.network.Credentials;
 import com.application.norgevz.myticketon.settings.Settings;
 
 import org.androidannotations.annotations.AfterViews;
@@ -35,8 +35,14 @@ public class MainActivity extends AppCompatActivity implements Authenticator.OnL
 
     private Authenticator authenticator;
 
+    @ViewById(R.id.progressBar)
+    ProgressBar progressBar;
+
     @AfterViews
     public void init() {
+
+        progressBar.getIndeterminateDrawable().setColorFilter(0xFFFF9800, android.graphics.PorterDuff.Mode.MULTIPLY);
+        progressBar.setVisibility(View.GONE);
 
         setUpComponents();
         setTextViewFont();
@@ -65,7 +71,8 @@ public class MainActivity extends AppCompatActivity implements Authenticator.OnL
         if (Credentials.isValidCredentialsFormat(line, password)) {
             Credentials myCredentials = Credentials.getCredentials(line, password);
 
-            authenticator.Validate(myCredentials, this);
+            progressBar.setVisibility(View.VISIBLE);
+            authenticator.Validate(myCredentials);
 
         } else {
             failLogin("Invalid Credentials Format");
@@ -83,22 +90,26 @@ public class MainActivity extends AppCompatActivity implements Authenticator.OnL
     }
 
     @Override
-    public void OnResult(boolean value) {
+    public void OnResult(boolean value, Credentials credentials) {
+
         if (!value)
             failLogin("Invalid Credentials");
         else {
+            registerCredentials(credentials);
             startActivity(new Intent(this, DashboardScreen.class));
+            progressBar.setVisibility(View.GONE);
             // TODO remove this activity from queue;
         }
     }
 
     @UiThread
     public void failLogin(String text) {
+        progressBar.setVisibility(View.GONE);
         invalidCredentialsTextView.setText(text);
         invalidCredentialsTextView.setVisibility(View.VISIBLE);
     }
 
-    @Override
+
     public void registerCredentials(Credentials credentials) {
         Settings.addSetting("providerId", credentials.providerId);
         Settings.addSetting("user", credentials.email);

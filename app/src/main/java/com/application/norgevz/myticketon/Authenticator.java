@@ -3,22 +3,25 @@ package com.application.norgevz.myticketon;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.application.norgevz.myticketon.rest.BaseClient;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+import com.application.norgevz.myticketon.network.BaseClient;
 
 import com.google.gson.Gson;
-import com.loopj.android.http.*;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.entity.StringEntity;
-import cz.msebera.android.httpclient.message.BasicHeader;
-import cz.msebera.android.httpclient.protocol.HTTP;
 
 /**
  * Created by norgevz on 12/8/2016.
  */
-import com.application.norgevz.myticketon.rest.*;
+import com.application.norgevz.myticketon.network.*;
 
 public class Authenticator extends BaseClient{
 
@@ -35,10 +38,10 @@ public class Authenticator extends BaseClient{
         super(authEnpoint , key);
     }
 
-    public void Validate(Credentials credentials, Context context){
+    public void Validate(Credentials credentials){
 
-        AuthenticateParams[] params = new AuthenticateParams[1];
-        params[0] = new AuthenticateParams(context, credentials);
+        Credentials[] params = new Credentials[1];
+        params[0] = credentials;
 
         new Authenticate().execute(params);
     }
@@ -51,65 +54,75 @@ public class Authenticator extends BaseClient{
 
     public interface OnLogin{
 
-        void OnResult(boolean value);
+        void OnResult(boolean value, Credentials credentials);
 
         void failLogin(String text);
-
-        void registerCredentials( Credentials credentials );
     }
 
 
-    class Authenticate extends AsyncTask<AuthenticateParams, Void , Void> {
-
-        public boolean result;
+    class Authenticate extends AsyncTask<Credentials, Void , Void> {
 
         @Override
-        protected Void doInBackground(AuthenticateParams... params)
+        protected Void doInBackground(Credentials... params)
         {
 
-            final Credentials credentials = params[0].credentials;
-            Context context = params[0].context;
-
+            final Credentials credentials = params[0];
             Gson gson = new Gson();
-            SyncHttpClient client = new SyncHttpClient();
 
-            try {
+            RequestQueue queue = VolleySingleton.getInstance().getRequestQueue();
+            final String json = gson.toJson(credentials, Credentials.class);
+            String URL = getEndpoint();
 
-                String json = gson.toJson(credentials, Credentials.class);
-                client.addHeader("Authorization", "amx" + " " + myKey);
-                StringEntity requestData = new StringEntity(json);
-                requestData.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-
-                client.post(context,
-                        getEndpoint(), requestData, "application/json", new TextHttpResponseHandler(){
-                            //TODO Check for other onFailures and why is taking so long
-                            @Override
-                            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                                if(listener != null) {
-                                    listener.failLogin("Error loading data.Please check connectivity and try again");
-                                }
-                                System.out.println("KERNEL PANIC");
-                            }
-
-                            @Override
-                            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-
-                                if(listener != null){
-                                    listener.registerCredentials( credentials );
-                                    listener.OnResult(Boolean.parseBoolean(responseString));
-                                }
-                            }
-                        });
-
-            } catch (UnsupportedEncodingException e) {
-
-                e.printStackTrace();
-
-                if(listener != null) {
-                    listener.failLogin("Error loading data.Please check connectivity and try again");
+            StringRequest request = new StringRequest(Request.Method.POST, URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            listener.OnResult(Boolean.valueOf(response), credentials);
+                            System.out.println(response);
+                        }
+                    }
+                    ,new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    listener.failLogin("Error loading data. Please check connectivity and try again");
+                    VolleyLog.e("Error: ", error.getMessage());
                 }
+            })
+            {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return json == null ? null : json.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", json, "utf-8");
+                        return null;
+                    }
+                }
+//                @Override
+//                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+//                    String responseString = "";
+//                    if (response != null) {
+//                        responseString = String.valueOf(response.statusCode);
+//                        // can get more details such as response.headers
+//                    }
+//                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+//                }
 
-            }
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Authorization", "amx" + " " + myKey);
+                    return headers;
+                }
+            };
+
+            request.setShouldCache(false);
+            queue.add(request);
+
             return null;
         }
 

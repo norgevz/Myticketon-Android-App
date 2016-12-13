@@ -7,11 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,14 +23,19 @@ import com.application.norgevz.myticketon.fragments.StatisticsFragment;
 import com.application.norgevz.myticketon.fragments.TicketsFragment;
 import com.application.norgevz.myticketon.settings.Settings;
 import com.application.norgevz.myticketon.tabs.SlidingTabLayout;
+import com.google.zxing.Result;
 
 import java.util.ArrayList;
+
+
+import me.dm7.barcodescanner.core.ViewFinderView;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /**
  * Created by norgevz on 12/11/2016.
  */
 
-public class DashboardScreen extends AppCompatActivity {
+public class DashboardScreen extends AppCompatActivity implements ZXingScannerView.ResultHandler{
 
 
     private Toolbar toolbar;
@@ -36,6 +43,8 @@ public class DashboardScreen extends AppCompatActivity {
     private ViewPager mPager;
 
     private SlidingTabLayout mTabs;
+
+    private ZXingScannerView mScannerView;
 
     //private RecyclerView recyclerView;
 
@@ -88,6 +97,13 @@ public class DashboardScreen extends AppCompatActivity {
 
         //TODO Check if scan is canceled
 
+        mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
+        setContentView(mScannerView);
+
+        mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
+        mScannerView.startCamera();         // Start camera
+
+        /*
         String line = "pdla_56422,pdla_56423,pdla_56441";
 
         Settings.addSetting("providerId", "pdla");
@@ -101,7 +117,36 @@ public class DashboardScreen extends AppCompatActivity {
             if(value.startsWith(providerId))
                 queries.add(value);
         }
+        */
+    }
 
+    @Override
+    public void handleResult(Result result) {
+        // Do something with the result here
+
+        Log.e("handler", result.getText()); // Prints scan results
+        Log.e("handler", result.getBarcodeFormat().toString()); // Prints the scan format (qrcode)
+
+        // show the scanner result into dialog box.
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan Result");
+        builder.setMessage(result.getText());
+        AlertDialog alert1 = builder.create();
+        alert1.show();
+
+        // If you would like to resume scanning, call this method below:
+        // mScannerView.resumeCameraPreview(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();           // Stop camera on pause
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
     }
 
     class CustomTabsPagerAdapter extends FragmentPagerAdapter {

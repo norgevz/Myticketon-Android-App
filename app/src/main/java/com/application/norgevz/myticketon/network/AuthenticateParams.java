@@ -1,4 +1,4 @@
-package com.application.norgevz.myticketon.rest;
+package com.application.norgevz.myticketon.network;
 
 import android.content.Context;
 
