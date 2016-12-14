@@ -17,13 +17,18 @@ public class BaseClient {
         return Settings.getEndpoint();
     }
 
+    public String getKey() {
+        return Settings.getKey();
+    }
+
     public String getEndpoint() {
         return getBaseEndpoint() + customEndpoint;
     }
 
 
-    public BaseClient(String customEndpoint, String key) {
-        this.key = key;
+    public BaseClient(String customEndpoint) {
         this.customEndpoint = customEndpoint;
     }
+
+
 }

@@ -3,6 +3,7 @@ package com.application.norgevz.myticketon;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.UiThread;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +20,6 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity implements Authenticator.OnLogin {
 
-    //TODO Show a loading when logging in
 
     @ViewById(R.id.email_edit_text)
     public EditText emailTextView;
@@ -90,10 +90,14 @@ public class MainActivity extends AppCompatActivity implements Authenticator.OnL
     }
 
     @Override
+    @UiThread
     public void OnResult(boolean value, Credentials credentials) {
 
-        if (!value)
-            failLogin("Invalid Credentials");
+        if (!value) {
+            progressBar.setVisibility(View.GONE);
+            invalidCredentialsTextView.setText("Invalid Credentials");
+            invalidCredentialsTextView.setVisibility(View.VISIBLE);
+        }
         else {
             registerCredentials(credentials);
             startActivity(new Intent(this, DashboardScreen.class));
@@ -103,10 +107,14 @@ public class MainActivity extends AppCompatActivity implements Authenticator.OnL
     }
 
     @UiThread
-    public void failLogin(String text) {
+    public void failLogin(String message) {
+
         progressBar.setVisibility(View.GONE);
-        invalidCredentialsTextView.setText(text);
-        invalidCredentialsTextView.setVisibility(View.VISIBLE);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan Result");
+        builder.setMessage(message);
+        AlertDialog alert1 = builder.create();
+        alert1.show();
     }
 
 

@@ -17,32 +17,36 @@
 
         <activity
             android:name="com.application.norgevz.myticketon.MainActivity_"
-            android:theme="@style/AppTheme.NoActionBar">
-
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
 
         </activity>
 
         <activity
             android:name="com.application.norgevz.myticketon.SettingsScreen_"
             android:label="Settings"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.application.norgevz.myticketon.RegisterScreen_"
             android:label="Register"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".DashboardScreen"
             android:label="Dashboard"
-            android:theme="@style/AppTheme.NoActionBar" >
-
-
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

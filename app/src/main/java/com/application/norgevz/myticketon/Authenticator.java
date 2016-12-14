@@ -35,7 +35,7 @@ public class Authenticator extends BaseClient{
     }
 
     public Authenticator(String key) {
-        super(authEnpoint , key);
+        super(authEnpoint);
     }
 
     public void Validate(Credentials credentials){
