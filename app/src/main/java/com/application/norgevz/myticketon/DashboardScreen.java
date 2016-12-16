@@ -16,6 +16,8 @@ import android.text.style.ImageSpan;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.application.norgevz.myticketon.fragments.ProfileFragment;
 import com.application.norgevz.myticketon.fragments.StatisticsFragment;
@@ -28,6 +30,9 @@ import com.application.norgevz.myticketon.tabs.SlidingTabLayout;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by norgevz on 12/11/2016.
  */
@@ -45,6 +50,8 @@ public class DashboardScreen extends AppCompatActivity implements TicketsReposit
 
     TicketsFragment dashboardTicketsFragment;
 
+    public ArrayList<Ticket> ticketsList = new ArrayList<>();
+
     //private RecyclerView recyclerView;
 
 
@@ -52,6 +59,7 @@ public class DashboardScreen extends AppCompatActivity implements TicketsReposit
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard_layout);
+
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
@@ -98,13 +106,19 @@ public class DashboardScreen extends AppCompatActivity implements TicketsReposit
 
     @Override
     public void onResponse(ArrayList<Ticket> tickets) {
-        for (Ticket ticket : tickets){
-            System.out.println(ticket.showName);
-            System.out.println(ticket.theaterName);
-            System.out.println(ticket.StartTime);
-            System.out.println(ticket.reedemState);
-            System.out.println();
+        ticketsList = tickets;
+        if(dashboardTicketsFragment != null){
+            dashboardTicketsFragment.getTicketsAdapter().update(tickets);
         }
+//
+//        for (Ticket ticket : tickets){
+//            System.out.println(ticket.showName);
+//            System.out.println(ticket.theaterName);
+//            System.out.println(ticket.StartTime);
+//            System.out.println(ticket.reedemState);
+//            System.out.println();
+//        }
+
     }
 
     @Override
@@ -133,7 +147,15 @@ public class DashboardScreen extends AppCompatActivity implements TicketsReposit
                 ordersHeadersId.add(value);
         }
 
+        if(ordersHeadersId.size() == 0){
+            dashboardTicketsFragment.setEmptyTextViewVisibility(View.VISIBLE);
+            ticketsList.clear();
+            dashboardTicketsFragment.getTicketsAdapter().update(ticketsList);
+            return;
+        }
+
         try {
+            dashboardTicketsFragment.setEmptyTextViewVisibility(View.INVISIBLE);
             ticketsRepository.getTickets(ordersHeadersId);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -144,7 +166,7 @@ public class DashboardScreen extends AppCompatActivity implements TicketsReposit
     public class CustomTabsPagerAdapter extends FragmentPagerAdapter {
 
         String[] tabs;
-        int icons[] = {R.drawable.stats, R.drawable.tickets, R.drawable.tickets};
+        int icons[] = {R.drawable.stats, R.drawable.tickets, R.drawable.profile};
 
         public CustomTabsPagerAdapter(FragmentManager fm) {
             super(fm);

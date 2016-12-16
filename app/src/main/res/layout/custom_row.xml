@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:orientation="horizontal"
+    android:background="@drawable/ticket_background"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="20dp">
+
+    <TextView
+        android:text="Nombre de la Obra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        tools:textColor="@color/white"
+        android:id="@+id/textView"
+        android:textColor="@color/white" />
+
+
+    <TextView
+        android:text="Vivi con Ella"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:id="@+id/show_name_text_view"
+        tools:textColor="@color/app_orange"
+        android:textSize="24sp"
+        android:textColor="@color/app_orange" />
+
+    <TextView
+        android:text="Lugar / Fecha "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView3"
+        tools:textColor="@color/white"
+        android:layout_below="@+id/show_name_text_view"
+        android:layout_alignStart="@+id/show_name_text_view"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:text="El Jardin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/theater_name_text_view"
+        tools:textColor="@color/app_orange"
+        android:textSize="15sp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:textColor="@color/app_orange" />
+
+    <TextView
+        android:text="18/nov/16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/date_text_view"
+        tools:textColor="@color/app_orange"
+        android:textSize="15sp"
+        android:layout_below="@+id/theater_name_text_view"
+        android:layout_alignStart="@+id/theater_name_text_view"
+        android:textColor="@color/app_orange" />
+
+    <ImageButton
+        android:src="@drawable/redeem_buttom_background"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/redeem_image_button"
+        android:background="@color/transparent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitXY"/>
+
+</RelativeLayout>

@@ -106,13 +106,14 @@
         android:id="@+id/settings_button"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         android:layout_alignParentTop="true"
         android:layout_marginTop="11dp"
         android:layout_toEndOf="@+id/imageView3"
         android:adjustViewBounds="true"
         android:background="@color/transparent"
         android:onClick="onSettingsButtonClicked"
-        android:scaleType="fitXY"
+
         android:src="@drawable/settings" />
 
     <ProgressBar

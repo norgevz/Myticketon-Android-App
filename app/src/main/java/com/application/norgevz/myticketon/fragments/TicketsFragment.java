@@ -6,16 +6,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.application.norgevz.myticketon.DashboardScreen;
 import com.application.norgevz.myticketon.R;
+import com.application.norgevz.myticketon.adapters.TicketsAdapter;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -25,7 +28,23 @@ import android.widget.Toast;
 public class TicketsFragment extends Fragment {
 
     private String toast;
+
     private DashboardScreen activity;
+
+    private RecyclerView recyclerView;
+
+    private TicketsAdapter ticketsAdapter;
+
+
+    private TextView emptyListTextView;
+
+    public void setEmptyTextViewVisibility(int visibility){
+        emptyListTextView.setVisibility(visibility);
+    }
+
+    public TicketsAdapter getTicketsAdapter() {
+        return ticketsAdapter;
+    }
 
     @Nullable
     @Override
@@ -44,6 +63,15 @@ public class TicketsFragment extends Fragment {
             }
         });
 
+        recyclerView = (RecyclerView) layout.findViewById(R.id.tickets_lists);
+        ticketsAdapter = new TicketsAdapter(getActivity(), activity.ticketsList);
+        recyclerView.setAdapter(ticketsAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        emptyListTextView = (TextView) layout.findViewById(R.id.empty_list_text_view);
+
+        if(activity.ticketsList.size() == 0)
+            emptyListTextView.setVisibility(View.VISIBLE);
 
         return layout;
     }
@@ -61,13 +89,12 @@ public class TicketsFragment extends Fragment {
     }
 
     public void scanFromFragment() {
-        activity.handleStringResult("pdla_56422,pdla_56423,pdla_56441");
-        /*
+        //activity.handleStringResult("pdla_56422,pdla_56423,pdla_56441");
+        ///*
         IntentIntegrator intentIntegrator =IntentIntegrator.forSupportFragment(this);
         intentIntegrator.setBeepEnabled(true);
         intentIntegrator.initiateScan();
-        */
-
+        //*/
     }
 
     private void displayToast() {
