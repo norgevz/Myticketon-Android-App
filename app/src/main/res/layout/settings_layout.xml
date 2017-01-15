@@ -29,7 +29,9 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/entry_hint_color"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        />
+    <!--android:text="http://192.168.137.168:7000/"-->
 
     <TextView
         android:id="@+id/app_key_entry_point"
@@ -52,11 +54,12 @@
         android:background="@drawable/edit_text_shape"
         android:hint="@string/app_key_hint"
         android:inputType="textPassword"
-        android:text="MTO_eRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc="
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/entry_hint_color"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        />
+    <!--android:text="MTO_eRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc="-->
 
     <Button
         android:id="@+id/save_button"

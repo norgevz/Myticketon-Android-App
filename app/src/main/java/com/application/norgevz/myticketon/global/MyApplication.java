@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.application.norgevz.myticketon.R;
+import com.application.norgevz.myticketon.models.User;
 
 /**
  * Created by norgevz on 12/9/2016.
@@ -18,6 +19,15 @@ public class MyApplication extends Application {
 
     private static MyApplication CurrentApplication;
 
+    public User loggedUser;
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
+
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
 
     public SharedPreferences.Editor getEditor() {
         return editor;

@@ -1,4 +1,4 @@
-package com.application.norgevz.myticketon.repos;
+package com.application.norgevz.myticketon.models;
 
 import java.util.Date;
 
@@ -14,12 +14,12 @@ public class Ticket {
 
     public Date StartTime;
 
-    public boolean reedemState;
+    public Order order;
 
-    public Ticket(String theaterName, String showName, Date startTime, boolean reedemState) {
-        this.reedemState = reedemState;
+    public Ticket(String theaterName, String showName, Date startTime, Order _order) {
         this.showName = showName;
         StartTime = startTime;
         this.theaterName = theaterName;
+        order = _order;
     }
 }

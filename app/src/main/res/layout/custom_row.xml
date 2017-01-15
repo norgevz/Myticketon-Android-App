@@ -69,7 +69,6 @@
         android:textColor="@color/app_orange" />
 
     <ImageButton
-        android:src="@drawable/redeem_buttom_background"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="25dp"
         android:id="@+id/redeem_image_button"

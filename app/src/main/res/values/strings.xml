@@ -6,11 +6,20 @@
     <string name="preference_file_key">com.application.norgevz.myticketon.APP_SETTINGS</string>
     <string name="privacy_policy_text_view">By pressing Sing Up you agree with the Terms of Services and Privacy Policy</string>
     <string name="log_out_string">Log Out</string>
-    
+
     <string-array name="tabs">
         <item> Statistics </item>
         <item> Tickets </item>
-        <item> Profile </item>
+        <!--<item> Profile </item>-->
     </string-array>
+
+    <string-array name="graphs">
+        <item>Money</item>
+        <item>Tickets</item>
+    </string-array>
+
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

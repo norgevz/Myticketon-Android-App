@@ -12,6 +12,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.application.norgevz.myticketon.network.BaseClient;
 
+import com.application.norgevz.myticketon.settings.Settings;
 import com.google.gson.Gson;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -22,21 +23,11 @@ import java.util.Map;
  * Created by norgevz on 12/8/2016.
  */
 import com.application.norgevz.myticketon.network.*;
+import com.google.gson.reflect.TypeToken;
 
-public class Authenticator extends BaseClient{
+public class Authenticator{
 
-    public static String myKey;
 
-    private static String authEnpoint;
-
-    static {
-        authEnpoint = "/nrest/Users/Authenticate";
-        myKey = "MTO_eRTUJHsCuQSHR+L3GxqOJyDmQpCgps102ciuabc=";
-    }
-
-    public Authenticator(String key) {
-        super(authEnpoint);
-    }
 
     public void Validate(Credentials credentials){
 
@@ -54,7 +45,7 @@ public class Authenticator extends BaseClient{
 
     public interface OnLogin{
 
-        void OnResult(boolean value, Credentials credentials);
+        void OnResult(DataResponse value, Credentials credentials);
 
         void failLogin(String text);
     }
@@ -67,17 +58,19 @@ public class Authenticator extends BaseClient{
         {
 
             final Credentials credentials = params[0];
-            Gson gson = new Gson();
+            final Gson gson = new Gson();
 
             RequestQueue queue = VolleySingleton.getInstance().getRequestQueue();
             final String json = gson.toJson(credentials, Credentials.class);
-            String URL = getEndpoint();
+            String URL = Settings.getEndpoint() + "/nrest/Users/Authenticate";
+            final String myKey = Settings.getKey();
 
             StringRequest request = new StringRequest(Request.Method.POST, URL,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            listener.OnResult(Boolean.valueOf(response), credentials);
+                            DataResponse dataResponse = gson.fromJson(response.toString(), new TypeToken<DataResponse>(){}.getType());
+                            listener.OnResult(dataResponse, credentials);
                             System.out.println(response);
                         }
                     }
@@ -102,15 +95,6 @@ public class Authenticator extends BaseClient{
                         return null;
                     }
                 }
-//                @Override
-//                protected Response<String> parseNetworkResponse(NetworkResponse response) {
-//                    String responseString = "";
-//                    if (response != null) {
-//                        responseString = String.valueOf(response.statusCode);
-//                        // can get more details such as response.headers
-//                    }
-//                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-//                }
 
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {

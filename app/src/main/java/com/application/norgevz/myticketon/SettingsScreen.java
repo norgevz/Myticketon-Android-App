@@ -51,10 +51,6 @@ public class SettingsScreen extends AppCompatActivity {
 
         if(appKey.length() > 0)
             Settings.setKey(appKey);
-
-        System.out.println(String.valueOf(entryPointTextView.getText()));
-        System.out.println(String.valueOf(appKeyEditText.getText()));
-
     }
 
 }

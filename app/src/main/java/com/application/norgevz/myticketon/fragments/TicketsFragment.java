@@ -14,12 +14,16 @@ import android.view.ViewGroup;
 import com.application.norgevz.myticketon.DashboardScreen;
 import com.application.norgevz.myticketon.R;
 import com.application.norgevz.myticketon.adapters.TicketsAdapter;
+import com.application.norgevz.myticketon.models.Ticket;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import android.support.v7.widget.RecyclerView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * Created by norgevz on 12/11/2016.
@@ -64,7 +68,13 @@ public class TicketsFragment extends Fragment {
         });
 
         recyclerView = (RecyclerView) layout.findViewById(R.id.tickets_lists);
-        ticketsAdapter = new TicketsAdapter(getActivity(), activity.ticketsList);
+        ticketsAdapter = new TicketsAdapter(getActivity(), activity.ticketsList, new TicketsAdapter.MyAdapterListener() {
+            @Override
+            public void iconImageViewOnClick(View v, Ticket ticket, int position) {
+                activity.updateOrder(ticket.order, position);
+            }
+        });
+
         recyclerView.setAdapter(ticketsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -90,11 +100,11 @@ public class TicketsFragment extends Fragment {
 
     public void scanFromFragment() {
         //activity.handleStringResult("pdla_56422,pdla_56423,pdla_56441");
-        ///*
+
         IntentIntegrator intentIntegrator =IntentIntegrator.forSupportFragment(this);
         intentIntegrator.setBeepEnabled(true);
         intentIntegrator.initiateScan();
-        //*/
+
     }
 
     private void displayToast() {
@@ -104,12 +114,16 @@ public class TicketsFragment extends Fragment {
         }
     }
 
+    public void updateList(ArrayList<Ticket> tickets){
+        ticketsAdapter.update(tickets);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {
-                toast = "Cancelled from fragment";
+                toast = "Cancelled by user";
                 displayToast();
             } else {
 

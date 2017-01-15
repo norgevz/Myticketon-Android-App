@@ -47,8 +47,10 @@ public final class Settings {
     }
 
     public static void removeSettings(String name){
-        if(containsSettings(name))
+        if(containsSettings(name)) {
             state.getEditor().remove(name);
+            state.getEditor().commit();
+        }
     }
 
 }

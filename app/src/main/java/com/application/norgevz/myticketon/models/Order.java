@@ -12,6 +12,7 @@ public class Order {
     public String Id;
     public String Theater ;
     public String Auditorium;
+    public Date CreatedOn;
     public Date StartTime;
     public String Tickets;
     public double Total;
