@@ -118,14 +118,6 @@ public class DashboardScreen extends AppCompatActivity
         if(dashboardTicketsFragment != null){
             dashboardTicketsFragment.updateList(tickets);
         }
-//
-//        for (Ticket ticket : tickets){
-//            System.out.println(ticket.showName);
-//            System.out.println(ticket.theaterName);
-//            System.out.println(ticket.StartTime);
-//            System.out.println(ticket.reedemState);
-//            System.out.println();
-//        }
 
     }
 
